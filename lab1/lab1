@@ -1,0 +1,124 @@
+int
+00000000000000000000000000000000 ; 0 ; 32 bits
+00000000000000000000000001011011 ; 91 ; 32 bits
+11111111111111111111111110100101 ; -91 ; 32 bits
+00000000000000000000000000110001 ; 49 ; 32 bits
+00000000000000011110001001000000 ; 123456 ; 32 bits
+11111111111111111111101110101001 ; -1111 ; 32 bits
+10000000000000000000000000000000 ; -2147483648 ; 32 bits
+01111111111111111111111111111111 ; 2147483647 ; 32 bits
+uint
+00000000000000000000000000000000 ; 0 ; 32 bits
+00000000000000000000000001011011 ; 91 ; 32 bits
+11111111111111111111111110100101 ; 4294967205 ; 32 bits
+00000000000000000000000000110001 ; 49 ; 32 bits
+00000000000000011110001001000000 ; 123456 ; 32 bits
+11111111111111111111101110101001 ; 4294966185 ; 32 bits
+00000000000000000000000000000000 ; 0 ; 32 bits
+11111111111111111111111111111111 ; 4294967295 ; 32 bits
+float
+00000000000000000000000000000000 ; 0.00000000000000000000 ; 32 bits
+01000010101101100000000000000000 ; 91.00000000000000000000 ; 32 bits
+11000010101101100000000000000000 ; -91.00000000000000000000 ; 32 bits
+00111110100110011001100110011010 ; 0.30000001192092895508 ; 32 bits
+00111101110011001100110011001101 ; 0.10000000149011611938 ; 32 bits
+01001001100101101011010000111001 ; 1234567.12500000000000000000 ; 32 bits
+00000000100000000000000000000000 ; 0.00000000000000000000 ; 32 bits
+01111111011111111111111111111111 ; 340282346638528859811704183484516925440.00000000000000000000 ; 32 bits
+double
+0000000000000000000000000000000000000000000000000000000000000000 ; 0.00000000000000000000 ; 64 bits
+0100000001010110110000000000000000000000000000000000000000000000 ; 91.00000000000000000000 ; 64 bits
+0001110011011110100001111100000011000010101101100000000000000000 ; -91.00000000000000000000 ; 64 bits
+0001110011011110100001111100000000111110100110011001100110011010 ; 0.30000001192092895508 ; 64 bits
+0001110011011110100001111100000000111101110011001100110011001101 ; 0.10000000149011611938 ; 64 bits
+0001110011011110100001111100000001001001100101101011010000111001 ; 1234567.12500000000000000000 ; 64 bits
+0001110011011110100001111100000000000000000000000000000000000000 ; 0.00000000000000000000 ; 64 bits
+0001110011011110100001111100000001111111100000000000000000000000 ; inf ; 64 bits
+
+
+#include <iostream>
+#include <bitset>
+#include <limits>
+#include <iomanip>
+template<typename T>
+void show_32_bits(T tmp) {
+	     const unsigned int tmpSize =32;  
+	     unsigned long int bits = *(unsigned long int*) (&tmp); 
+	     std::bitset<(tmpSize)> tmpBits(bits);
+	     std::cout<<tmpBits <<" ; "<<std::fixed<<std::setprecision(20)<<tmp<<" ; "<<tmpSize <<" bits"<<std::endl;
+	     }
+	     template<typename T>
+	     void show_64_bits(T tmp) { 
+			     const unsigned int tmpSize = 64;  
+			     unsigned long long int bits = *(unsigned long long int*) (&tmp);  
+			     std::bitset<(tmpSize)> tmpBits(bits);  
+			     std::cout<<tmpBits <<" ; "<<std::fixed<<std::setprecision(20)<<tmp<<" ; "<<tmpSize <<" bits"<<std::endl;
+			     }
+int main() {
+	int a=0;
+	show_32_bits(a);			   
+	int b = 91;
+	show_32_bits(b);
+	int c = -91;  
+	show_32_bits(c); 
+	int d=49;
+	show_32_bits(d); 
+	int e=123456;
+	show_32_bits(e); 
+	int f= -1111; 
+	show_32_bits(f); 
+	int g = std::numeric_limits<int>::min();
+	show_32_bits(g);
+	int h = std::numeric_limits<int>::max(); 
+	show_32_bits(h);
+	uint a1=0;
+	show_32_bits(a1);			   
+	uint b1 = 91;
+	show_32_bits(b1);
+	uint c1 = -91;  
+	show_32_bits(c1); 
+	uint d1=49;
+	show_32_bits(d1); 
+	uint e1=123456;
+	show_32_bits(e1); 
+	uint f1= -1111; 
+	show_32_bits(f1); 
+	uint g1 = std::numeric_limits<uint>::min();
+	show_32_bits(g1);
+	uint h1 = std::numeric_limits<uint>::max(); 
+	show_32_bits(h1);
+	float a2=0.0f;
+	show_32_bits(a2);			   
+	float b2 = 91.0f;
+	show_32_bits(b2);
+	float c2 = -91.0f;  
+	show_32_bits(c2); 
+	float d2=0.3f;
+	show_32_bits(d2); 
+	float e2=0.1f;
+	show_32_bits(e2); 
+	float f2= 1234567.1234567f; 
+	show_32_bits(f2); 
+	float g2 = std::numeric_limits<float>::min();
+	show_32_bits(g2);
+	float h2 = std::numeric_limits<float>::max(); 
+	show_32_bits(h2);
+	double a3=0.0;
+	show_64_bits(a3);			   
+	double b3 = 91.0;
+	show_64_bits(b3);
+	float c3 = -91.0;  
+	show_64_bits(c3); 
+	float d3=0.3;
+	show_64_bits(d3); 
+	float e3=0.1;
+	show_64_bits(e3); 
+	float f3= 1234567.1234567; 
+	show_64_bits(f3); 
+	float g3 = std::numeric_limits<double>::min();
+	show_64_bits(g3);
+	float h3 = std::numeric_limits<double>::max(); 
+	show_64_bits(h3);
+	
+	return 0;
+	}
